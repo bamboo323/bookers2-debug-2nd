@@ -42,6 +42,13 @@
         <td>
           <p>コメント数<%= book.book_comments.count %></p>
         </td>
+        
+        <!--ソート機能、日本時間表示-->
+        <td>
+          <%= l book.created_at %>
+        </td>
+        <!--ここまで-->
+        
       </tr>
     <% end %>
   </tbody>
