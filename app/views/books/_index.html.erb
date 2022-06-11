@@ -21,24 +21,23 @@
           <%= render "favorites/favorites", book: book %>
         </td>
 
+          <!--ここから星機能追加-->
         <td>
-          <div id="star-rate<%= @book.id %>">
-        </td>
+          <div id="star-rate<%= book.id%>"> </td>
           <script>
-            $('#star-rate<%= @book.id %>').empty();
-            $('#star-rate<%= @book.id %>').raty({
+            $('#star-rate<%= book.id %>').empty();
+            $('#star-rate<%= book.id%>').raty({
               size: 36,
               starOff: '<%= asset_path('star-off.png') %>',
               starHalf: '<%= asset_path('star-half.png') %>',
               starOn: '<%= asset_path('star-on.png') %>',
+              half: true,
               readOnly: true,
-              score: <%= @book.star %>,
+              score: <%= book.star %>,
             });
           </script>
           </div>
-
-
-
+          <!--ここまで追加-->
 
         <td>
           <p>コメント数<%= book.book_comments.count %></p>

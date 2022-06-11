@@ -17,6 +17,25 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+
+          <!--ここから星機能追加-->
+          <td>
+            <div id="star-rate<%= @book.id%>"></td>
+             <script>
+              $('#star-rate<%= @book.id %>').empty();
+              $('#star-rate<%= @book.id%>').raty({
+                size: 36,
+                starOff: '<%= asset_path('star-off.png') %>',
+                starHalf:'<%= asset_path('star-half.png') %>',
+                starOn: '<%= asset_path('star-on.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= @book.star %>,
+               });
+             </script>
+          </td>
+          <!--ここまで追加-->
+
             <% if @book.user == current_user %>
               <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
               <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
@@ -24,23 +43,7 @@
           <td>
             <p>コメント数<%= @book.book_comments.count %></p>
           </td>
-          
-          <td>
-            <div id="star-rate<%= @book.id %>">
-          </td>
-              <script>
-                $('#star-rate<%= @book.id %>').empty();
-                $('#star-rate<%= @book.id %>').raty({
-                  size: 36,
-                  starOff: '<%= asset_path('star-off.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  starOn: '<%= asset_path('star-on.png') %>',
-                  readOnly: true,
-                  score: <%= @book.star %>,
-                });
-              </script>
-            </div
-          
+
         </tr>
       </table>
 
